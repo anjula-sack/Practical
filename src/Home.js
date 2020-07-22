@@ -7,6 +7,7 @@ class Home extends React.Component {
     items = [];
     size = 'all';
     type = 'all';
+    updatedItems = [];
 
     constructor(props) {
         super(props);
@@ -18,6 +19,8 @@ class Home extends React.Component {
 
     componentDidMount() {
         this.fetchItems();
+        this.updatedItems = JSON.parse(localStorage.getItem('items'));
+        console.log(this.updatedItems);
     }
 
     fetchItems = () => {
@@ -56,8 +59,13 @@ class Home extends React.Component {
     }
 
     render() {
+        let total = 0;
+        this.updatedItems.forEach( item => {
+            total += item.qty * item.details.price;
+        })
         return (
             <Container style={{ marginTop: 20 }}>
+                <h1>Total = {total}</h1>
                 <Row>
                 <Col>
                     <span>Size</span>
