@@ -1,5 +1,4 @@
 import React from 'react';
-import './App.css';
 import axios from 'axios';
 import ShoppingItem from "./components/ShoppingItem";
 import {Col, Container, Row} from "react-bootstrap";
@@ -7,6 +6,7 @@ import {Col, Container, Row} from "react-bootstrap";
 class Home extends React.Component {
     items = [];
     size = 'all';
+    type = 'all';
 
     constructor(props) {
         super(props);
@@ -27,7 +27,7 @@ class Home extends React.Component {
                 this.setState({items: response.data})
                 this.items = response.data;
                 let types = ['all'];
-                this.items.map(item => {
+                this.items.forEach(item => {
                     if(!types.includes(item.details.type)){
                         types.push(item.details.type)
                     }

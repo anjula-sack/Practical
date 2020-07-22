@@ -17,6 +17,7 @@ class ShoppingItem extends React.Component{
             }
 
             if(!isAlreadyIncluded){
+                item.qty = 1;
                 items.push(item);
             }
         }
